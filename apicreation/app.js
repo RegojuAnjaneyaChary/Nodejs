@@ -11,7 +11,7 @@ http.createServer((req, res) => {
     const method = req.method;
     const path = pathName.split('/')
     console.log("Path", path)
-
+     const id = path[2]
 
     if (method === "GET" && pathName === "/products") {
         const data = readFile();
@@ -21,10 +21,10 @@ http.createServer((req, res) => {
         // res.write('hii hello')
         return res.end();
     }
-    // get all productsbuid
+    // get all productsbyid
     else if (method === "GET" && pathName === `/products/${id}`) {
         const data = readFile();
-        const product = data.find((item) => item.id = id);
+        const product = data.find((item) => item.id == id);
         if (product) {
             res.writeHead(200);
             res.write(JSON.stringify(product));
@@ -34,7 +34,7 @@ http.createServer((req, res) => {
             res.write("product not found");
             return res.end();
         }
-
+       return
     }
 
 
